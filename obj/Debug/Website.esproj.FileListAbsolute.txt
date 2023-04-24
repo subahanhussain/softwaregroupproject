@@ -1,0 +1,2 @@
+G:\Visual studio\Website\Website\obj\Debug\Website.esproj.SuggestedBindingRedirects.cache
+G:\Visual studio\Website\Website\obj\Debug\Website.esproj.CoreCompileInputs.cache
