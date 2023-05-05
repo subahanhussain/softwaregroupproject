@@ -15,6 +15,10 @@ import AdminWelcome from './Components/AdminWelcome';
 import AdminBooking from './Components/AdminBooking';
 import AdminRequest from './Components/AdminRequest';
 
+const mysql = require('mysql');
+
+
+
 function App() {
     const [isLoggedIn, setLoggedIn] = React.useState(false);
     const [isAdmin, setAdmin] = React.useState(false);
