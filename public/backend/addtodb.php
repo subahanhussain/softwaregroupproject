@@ -1,7 +1,7 @@
 <?php
   try
 {
-$db = new PDO('sqlite:../Database/Surgery.db');
+$db = new PDO('sqlite:surgery.db');
 $firstname = $_POST["fname"];
 $lastname = $_POST["lname"];
 $nhsNo = $_POST["nhsNo"];
