@@ -12,7 +12,6 @@ function AdminWelcome() {
             </div>
             <div className="box">
                 <p>Welcome</p>
-                <br />
                 <div className="buttonContainer">
                     <div style={{ marginRight: '10px' }}>
                         <Greenbuttonleft link="/adminbooking" label="Book appointment" />

@@ -12,7 +12,6 @@ function Welcome() {
             </div>
             <div className="box">
                 <p>Welcome</p>
-                <br />
                 <div className="buttonContainer">
                     <div style={{ marginRight: '10px' }}>
                         <Greenbuttonleft link="/booking" label="Book appointment" />

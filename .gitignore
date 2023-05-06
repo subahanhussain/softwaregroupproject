@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+src/Components/Backend/Database/central_medical_record.db
+src/Components/Backend/Database/Surgery.db
+src/Components/Backend/Database/Surgery.sqbpro
+src/Components/Backend/Surgery.sqbpro

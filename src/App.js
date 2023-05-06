@@ -15,6 +15,10 @@ import AdminWelcome from './Components/AdminWelcome';
 import AdminBooking from './Components/AdminBooking';
 import AdminRequest from './Components/AdminRequest';
 
+const mysql = require('mysql');
+
+
+
 function App() {
     const [isLoggedIn, setLoggedIn] = React.useState(false);
     const [isAdmin, setAdmin] = React.useState(false);
@@ -38,8 +42,8 @@ function App() {
                 <Route path="/request" element={<Request setDone={setDone} />} />
                 <Route path="/done" element={isDone ? <Done /> : (
                     <>
-                    <Booking setDone={setDone} />
-                    <Request setDone={setDone} />
+                        <Booking setDone={setDone} />
+                        <Request setDone={setDone} />
                     </>
                 )} />
                 <Route path="/adminwelcome" element={isAdmin ? <AdminWelcome /> : (

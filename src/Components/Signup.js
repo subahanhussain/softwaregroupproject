@@ -16,7 +16,9 @@ function Signup({ setLoggedIn }) {
     setLoggedIn(true);
 
     const handleSubmit = (event) => {
+
         event.preventDefault();
+
         // do signup logic
     }
 
@@ -27,35 +29,35 @@ function Signup({ setLoggedIn }) {
             </div>
             <div className="box">
                 <div className="form-container">
-                    <form onSubmit={handleSubmit}>
+                    <form method="POST" action="addtodb.php" onSubmit={handleSubmit}>
                         <br />
                         <div className="form-row">
                             <label>First Name:</label>
-                            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                            <input type="text" name="fname" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Last Name:</label>
-                            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                            <input type="text" name="lname" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>NHS Number:</label>
-                            <input type="text" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
+                            <input type="text" name="nhsNo" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Phone Number:</label>
-                            <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <input type="text" name="mobNo" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Email:</label>
-                            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Postcode:</label>
-                            <input type="text" value={postcode} onChange={(e) => setPostcode(e.target.value)} />
+                            <input type="text" name="postcode" value={postcode} onChange={(e) => setPostcode(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Password:</label>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Confirm Password:</label>

@@ -33,7 +33,7 @@ function Login({ setLoggedIn, setAdmin }) {
                         <br />
                         <div className="form-row">
                             <label>NHS number:</label>
-                            <input type="text" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
+                            <input type="text" method="POST" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Password:</label>
