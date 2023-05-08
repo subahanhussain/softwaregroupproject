@@ -6,15 +6,25 @@ import './stylesheet.css';
 function Login({ setLoggedIn, setAdmin }) {
     const [nhsNumber, setNHSNumber] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        fetch('http://localhost:3000/login.php', {
+            method: 'POST',
+            body: data
+        })
 
-        if (nhsNumber === 'admin' && password === 'admin') {
-            setAdmin(true);
-        } else {
-            // do login logic
-            setLoggedIn(true);
-        }
+            if (data.loggedIn) {
+                if (data.admin) {
+                    setAdmin(true);
+                } else {
+                    setLoggedIn(true);
+                }
+            } else {
+                setError(data.error);
+            }
     }
 
     return (
@@ -33,11 +43,11 @@ function Login({ setLoggedIn, setAdmin }) {
                         <br />
                         <div className="form-row">
                             <label>NHS number:</label>
-                            <input type="text" method = "POST" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
+                            <input type="text" name="nhsNumber" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Password:</label>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <br />
                         <br />
@@ -45,13 +55,14 @@ function Login({ setLoggedIn, setAdmin }) {
                         <br />
                         <div className="buttonContainer">
                             <div>
-                                <Button type="submit" link="/welcome" label="Log in" />
+                                <Button type="submit" label="Log in" />
                             </div>
                             <div style={{ marginRight: '120px' }}>
                                 <Button link="/" label="Go back" />
                             </div>
                         </div>
                     </form>
+                    {error && <div className="error">{error}</div>}
                 </div>
             </div>
         </div>

@@ -15,4 +15,4 @@ function AdminBooking() {
 
 export default AdminBooking;
 
-// approve or deny appointment requests
+// display the appointment requests added to the database and approve or deny them

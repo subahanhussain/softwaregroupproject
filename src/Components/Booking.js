@@ -8,11 +8,16 @@ function Booking({ setDone }) {
     const [reason, setReason] = useState('');
     const [doctor, setDoctor] = useState('');
 
-    setDone(true);
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        // do booking logic
+        const data = new FormData(event.target);
+        fetch('http://localhost:3000/addbooking.php', {
+            method: 'POST',
+            body: data
+        })
+
+        if (data.booked) {
+                setDone(true);
     }
 
     return (
@@ -26,20 +31,24 @@ function Booking({ setDone }) {
                     <form onSubmit={handleSubmit}>
                         <br />
                         <div className="form-row">
+                            <label>NHS Number:</label>
+                            <input type="text" name="nhsNumber" required />
+                        </div>
+                        <div className="form-row">
                             <label>Desired date:</label>
-                            <input type="text" value={date} onChange={(e) => setDate(e.target.value)} />
+                            <input type="text" name="date" value={date} onChange={(e) => setDate(e.target.value)} required />
                         </div>
                         <div className="form-row">
                             <label>Desired time:</label>
-                            <input type="text" value={time} onChange={(e) => setTime(e.target.value)} />
+                            <input type="text" name="time" value={time} onChange={(e) => setTime(e.target.value)} required />
                         </div>
                         <div className="form-row">
                             <label>Reasoning:</label>
-                            <input type="text" value={reason} onChange={(e) => setReason(e.target.value)} />
+                            <input type="text" name="reason" value={reason} onChange={(e) => setReason(e.target.value)} required />
                         </div>
                         <div className="form-row">
                             <label>Desired doctor:</label>
-                            <input type="text" value={doctor} onChange={(e) => setDoctor(e.target.value)} />
+                            <input type="text" name="doctor" value={doctor} onChange={(e) => setDoctor(e.target.value)} required />
                         </div>
                         <br />
                         <br />

@@ -11,9 +11,10 @@ import Records from './Components/Records.js';
 import Doctors from './Components/Doctors.js';
 import Request from './Components/Request.js';
 import Done from './Components/Done.js';
-import AdminWelcome from './Components/AdminWelcome';
-import AdminBooking from './Components/AdminBooking';
-import AdminRequest from './Components/AdminRequest';
+import AdminWelcome from './Components/AdminWelcome.js';
+import AdminBooking from './Components/AdminBooking.js';
+import AdminRequest from './Components/AdminRequest.js';
+import Delete from './Components/Delete.js'
 
 
 
@@ -51,6 +52,7 @@ function App() {
                 )} />
                 <Route path="/adminbooking" element={<AdminBooking />} />
                 <Route path="/adminrequest" element={<AdminRequest />} />
+                <Route path="/delete" element={<Delete /> } />
             </Routes>
         </BrowserRouter>
     );

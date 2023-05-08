@@ -28,6 +28,9 @@ function Welcome() {
                 <div>
                     <Button link="/" label="Log out" />
                 </div>
+                <div>
+                    <Button link="/delete" label="Delete account" />
+                </div>
             </div>
         </div>
     );

@@ -15,4 +15,4 @@ function AdminRequest() {
 
 export default AdminRequest;
 
-// approve or deny prescription requests
+// display the booking requests added to the database and approve or deny them

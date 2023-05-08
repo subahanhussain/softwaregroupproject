@@ -16,10 +16,16 @@ function Signup({ setLoggedIn }) {
     setLoggedIn(true);
 
     const handleSubmit = (event) => {
-
         event.preventDefault();
+        const data = new FormData(event.target);
+        fetch('http://localhost:3000/addtodb.php', {
+            method: 'POST',
+            body: data
+        })
 
-        // do signup logic
+        if (data.loggedIn) {
+            setLoggedIn(true);
+        }
     }
 
     return (
@@ -29,7 +35,7 @@ function Signup({ setLoggedIn }) {
             </div>
             <div className="box">
                 <div className="form-container">
-                    <form method="POST" action="addtodb.php" onSubmit={handleSubmit}>
+                    <form method="POST" action="http://localhost:3000/addtodb.php" onSubmit={handleSubmit}>
                         <br />
                         <div className="form-row">
                             <label>First Name:</label>

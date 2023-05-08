@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import logo from './govuklogo.png';
 import Button from './Button.js';
+import axios from 'axios';
 
 function Request({ setDone }) {
     const [prescription, setPrescription] = useState('');
     const [isRepeat, setIsRepeat] = useState(false);
 
-    setDone(true);
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        // do request logic
-    }
+        const data = new FormData(event.target);
+        fetch('http://localhost:3000/addrequest.php', {
+            method: 'POST',
+            body: data
+        })
+
+        if (data.requested) {
+            setDone(true);
+        }
+
 
     return (
         <div>
