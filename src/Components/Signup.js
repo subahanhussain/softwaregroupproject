@@ -13,12 +13,10 @@ function Signup({ setLoggedIn }) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    setLoggedIn(true);
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('http://localhost:3000/addtodb.php', {
+        fetch('http://localhost/backend/addtodb.php', {
             method: 'POST',
             body: data
         })

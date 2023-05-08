@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import logo from './govuklogo.png';
 import Button from './Button.js';
-import axios from 'axios';
 
 function Request({ setDone }) {
     const [prescription, setPrescription] = useState('');
@@ -10,15 +9,15 @@ function Request({ setDone }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('http://localhost:3000/addrequest.php', {
+        fetch('http://localhost/backend/addrequest.php', {
             method: 'POST',
-            body: data
-        })
-
-        if (data.requested) {
-            setDone(true);
-        }
-
+            body: data,
+        }).then((response) => {
+            if (response.ok) {
+                setDone(true);
+            }
+        });
+    };
 
     return (
         <div>
@@ -32,14 +31,32 @@ function Request({ setDone }) {
                         <br />
                         <div className="form-row">
                             <label>Desired prescription:</label>
-                            <input type="text" value={prescription} onChange={(e) => setPrescription(e.target.value)} />
+                            <input
+                                type="text"
+                                value={prescription}
+                                onChange={(e) => setPrescription(e.target.value)}
+                            />
                         </div>
                         <br />
                         <br />
                         <div className="form-row">
                             <label>Is this a repeat prescription?</label>
-                            <input type="radio" name="isRepeat" value="yes" checked={isRepeat === true} onChange={() => setIsRepeat(true)} /> Yes
-                            <input type="radio" name="isRepeat" value="no" checked={isRepeat === false} onChange={() => setIsRepeat(false)} /> No
+                            <input
+                                type="radio"
+                                name="isRepeat"
+                                value="yes"
+                                checked={isRepeat === true}
+                                onChange={() => setIsRepeat(true)}
+                            />{' '}
+                            Yes
+                            <input
+                                type="radio"
+                                name="isRepeat"
+                                value="no"
+                                checked={isRepeat === false}
+                                onChange={() => setIsRepeat(false)}
+                            />{' '}
+                            No
                         </div>
                         <br />
                         <br />

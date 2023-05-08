@@ -11,14 +11,17 @@ function Booking({ setDone }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('http://localhost:3000/addbooking.php', {
+        fetch('http://localhost/backend/addbooking.php', {
             method: 'POST',
             body: data
         })
-
-        if (data.booked) {
-                setDone(true);
-    }
+            .then(response => response.json())
+            .then(data => {
+                if (data.booked) {
+                    setDone(true);
+                }
+            });
+    };
 
     return (
         <div>
@@ -50,7 +53,6 @@ function Booking({ setDone }) {
                             <label>Desired doctor:</label>
                             <input type="text" name="doctor" value={doctor} onChange={(e) => setDoctor(e.target.value)} required />
                         </div>
-                        <br />
                         <br />
                         <br />
                         <div className="buttonContainer">

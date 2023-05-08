@@ -14,13 +14,9 @@ try {
     if($user && password_verify($password, $user['password'])) {
         if ($user['nhsNumber'] == 'admin') {
             $_SESSION['admin'] = true;
-            header('Location: adminwelcome.php');
-            exit();
         } else {
             $_SESSION['nhsNumber'] = $nhsNumber;
             $_SESSION['loggedIn'] = true;
-            header('Location: userwelcome.php');
-            exit();
         }
     } else {
         $error = "Invalid login details.";

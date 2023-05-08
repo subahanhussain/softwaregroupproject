@@ -10,7 +10,7 @@ try {
 
     
         if ($user) {
-            $delete_query = "DELETE FROM users WHERE nhsNo = :nhsNo";
+            $delete_query = "DELETE FROM patients WHERE nhsNo = :nhsNo";
             $statement = $database->prepare($delete_query);
             $statement->bindParam(':nhsNo', $nhsNo);
             $statement->execute();

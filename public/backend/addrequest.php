@@ -8,7 +8,7 @@ try {
     $prescription = filter_var ($_POST['prescription'], FILTER_SANITIZE_STRING);
     isRepeat = $_POST['isRepeat'] === 'yes' ? 1 : 0;
 
-    $stmt = $db->prepare('INSERT INTO prescriptions (nhsNo, prescription, is_repeat) 
+    $stmt = $db->prepare('INSERT INTO prescription_requests (nhsNo, prescription, is_repeat) 
                          VALUES (:nhsNo, :prescription, :is_repeat)');
                          
     $stmt = $db->prepare($SQL1);

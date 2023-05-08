@@ -6,25 +6,22 @@ import './stylesheet.css';
 function Login({ setLoggedIn, setAdmin }) {
     const [nhsNumber, setNHSNumber] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('http://localhost:3000/login.php', {
+        fetch('http://localhost/backend/login.php', {
             method: 'POST',
             body: data
         })
 
-            if (data.loggedIn) {
-                if (data.admin) {
-                    setAdmin(true);
-                } else {
-                    setLoggedIn(true);
-                }
+        if (data.loggedIn) {
+            if (data.admin) {
+                setAdmin(true);
             } else {
-                setError(data.error);
+                setLoggedIn(true);
             }
+        }
     }
 
     return (
@@ -62,7 +59,6 @@ function Login({ setLoggedIn, setAdmin }) {
                             </div>
                         </div>
                     </form>
-                    {error && <div className="error">{error}</div>}
                 </div>
             </div>
         </div>

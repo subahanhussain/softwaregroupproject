@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import logo from './govuklogo.png';
+import Button from './Button.js';
 
 function Delete() {
     const [nhsNumber, setNHSNumber] = useState('');
@@ -8,11 +9,12 @@ function Delete() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('http://localhost:3000/removedb.php', {
+        fetch('http://localhost/backend/removedb.php', {
             method: 'POST',
-            method: 'POST',
-            body: data
+            body: data,
         })
+
+    };
 
     return (
         <div>
@@ -22,34 +24,27 @@ function Delete() {
             <div className="box">
                 <br />
                 <br />
-                <bn />
-                <p style={{ fontSize: '0.7em' }}>
-                    Enter your NHS number and password to continue.
-                </p>
+                <p style={{ fontSize: '0.7em' }}> Enter your NHS number and password to continue.</p>
                 <div className="form-container">
                     <form onSubmit={handleSubmit}>
+                        <br />
+                        <br />
                         <div className="form-row">
                             <label>NHS number:</label>
-                            <input
-                                type="text"
-                                value={nhsNumber}
-                                onChange={(e) => setNHSNumber(e.target.value)}
-                            />
+                            <input type="text" name="nhsNumber" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Password:</label>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
+                            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
+                        <br />
+                        <br />
                         <div className="buttonContainer">
                             <div>
-                                <Button type="submit" link="/" label="Delete account" />
+                                <Button type="submit" label="Log in" />
                             </div>
-                            <div>
-                                <Button link="/welcome" label="Go back" />
+                            <div style={{ marginRight: '120px' }}>
+                                <Button link="/" label="Go back" />
                             </div>
                         </div>
                     </form>
