@@ -4,19 +4,22 @@ import Button from './Button.js';
 import './stylesheet.css';
 
 function Login({ setLoggedIn, setAdmin }) {
-    const [nhsNumber, setNHSNumber] = useState('');
+    const [nhsNo, setNHSNumber] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    setAdmin(true);
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('http://localhost/backend/login.php', {
+        const response = await fetch('http://localhost/backend/login.php', {
             method: 'POST',
             body: data
-        })
+        });
+        const result = await response.json();
 
-        if (data.loggedIn) {
-            if (data.admin) {
+        if (result.isLoggedIn) {
+            if (result.isAdmin) {
                 setAdmin(true);
             } else {
                 setLoggedIn(true);
@@ -40,7 +43,7 @@ function Login({ setLoggedIn, setAdmin }) {
                         <br />
                         <div className="form-row">
                             <label>NHS number:</label>
-                            <input type="text" name="nhsNumber" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
+                            <input type="text" name="nhsNo" value={nhsNo} onChange={(e) => setNHSNumber(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Password:</label>

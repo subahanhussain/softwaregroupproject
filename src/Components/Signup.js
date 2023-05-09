@@ -4,10 +4,10 @@ import Button from './Button.js';
 import './stylesheet.css';
 
 function Signup({ setLoggedIn }) {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [nhsNumber, setNHSNumber] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [fname, setFirstName] = useState('');
+    const [lname, setLastName] = useState('');
+    const [nhsNo, setNHSNumber] = useState('');
+    const [mobNo, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [postcode, setPostcode] = useState('');
     const [password, setPassword] = useState('');
@@ -20,11 +20,14 @@ function Signup({ setLoggedIn }) {
             method: 'POST',
             body: data
         })
-
-        if (data.loggedIn) {
-            setLoggedIn(true);
-        }
-    }
+            .then(response => response.json())
+            .then(data => {
+                if (data.isLoggedIn) {
+                    setLoggedIn(true);
+                }
+            })
+            .catch(error => console.error(error));
+    };
 
     return (
         <div>
@@ -33,23 +36,23 @@ function Signup({ setLoggedIn }) {
             </div>
             <div className="box">
                 <div className="form-container">
-                    <form method="POST" action="http://localhost:3000/addtodb.php" onSubmit={handleSubmit}>
+                    <form method="POST" action="http://localhost/backend/addtodb.php" onSubmit={handleSubmit}>
                         <br />
                         <div className="form-row">
                             <label>First Name:</label>
-                            <input type="text" name="fname" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                            <input type="text" name="fname" value={fname} onChange={(e) => setFirstName(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Last Name:</label>
-                            <input type="text" name="lname" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                            <input type="text" name="lname" value={lname} onChange={(e) => setLastName(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>NHS Number:</label>
-                            <input type="text" name="nhsNo" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
+                            <input type="text" name="nhsNo" value={nhsNo} onChange={(e) => setNHSNumber(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Phone Number:</label>
-                            <input type="text" name="mobNo" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <input type="text" name="mobNo" value={mobNo} onChange={(e) => setPhoneNumber(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Email:</label>

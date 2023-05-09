@@ -5,8 +5,8 @@ try {
     $db = new PDO('sqlite:surgery.db');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $firstname = filter_var($_POST['fname'], FILTER_SANITIZE_STRING);
-    $lastname = filter_var($_POST['lname'], FILTER_SANITIZE_STRING);
+    $fname = filter_var($_POST['fname'], FILTER_SANITIZE_STRING);
+    $lname = filter_var($_POST['lname'], FILTER_SANITIZE_STRING);
     $nhsNo = filter_var($_POST['nhsNo'], FILTER_SANITIZE_STRING);
     $mobNo = filter_var($_POST['mobNo'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -24,7 +24,7 @@ try {
 
     $stmt->execute();
     $_SESSION['nhsNumber'] = $nhsNumber;
-    $_SESSION['loggedIn'] = true;
+    $_SESSION['isLoggedIn'] = true;
 
 } catch(PDOException $e) {
     print 'Exception : ' .$e->getMessage();

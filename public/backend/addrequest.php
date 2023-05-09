@@ -4,7 +4,7 @@ try {
     $db = new PDO('sqlite:surgery.db');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $nhsNo = filter_var ($_POST['nhsNumber'], FILTER_SANITIZE_STRING);
+    $nhsNo = filter_var ($_POST['nhsNo'], FILTER_SANITIZE_STRING);
     $prescription = filter_var ($_POST['prescription'], FILTER_SANITIZE_STRING);
     isRepeat = $_POST['isRepeat'] === 'yes' ? 1 : 0;
 

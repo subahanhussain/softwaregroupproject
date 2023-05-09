@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, redirect } from 'react-router-dom';
 import logo from './Components/govuklogo.png';
 import Button from './Components/Button.js';
 import Login from './Components/Login.js';
@@ -27,23 +27,27 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Main />} />
-                <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setAdmin={setAdmin} />} />
-                <Route path="/signup" element={<Signup setLoggedIn={setLoggedIn} />} />
+                <Route path="/login" element={isLoggedIn ? <Welcome /> : (
+                    <Login setLoggedIn={setLoggedIn} />
+                )} />
+                <Route path="/signup" element={isLoggedIn ? <Welcome /> : (
+                    <Signup setLoggedIn={setLoggedIn} />
+                )} />
                 <Route path="/welcome" element={isLoggedIn ? <Welcome /> : (
-                    <>
-                        <Login setLoggedIn={setLoggedIn} />
-                        <Signup setLoggedIn={setLoggedIn} />
-                    </>
+                    <Login setLoggedIn={setLoggedIn} />
                 )} />
                 <Route path="/booking" element={<Booking setDone={setDone} />} />
                 <Route path="/records" element={<Records />} />
                 <Route path="/doctors" element={<Doctors />} />
                 <Route path="/request" element={<Request setDone={setDone} />} />
+                <Route path="/booking" element={isDone ? <Done /> : (
+                    <Booking setDone={setDone} />
+                )} />
+                <Route path="/request" element={isDone ? <Done /> : (
+                    <Request setDone={setDone} />
+                )} />
                 <Route path="/done" element={isDone ? <Done /> : (
-                    <>
-                        <Booking setDone={setDone} />
-                        <Request setDone={setDone} />
-                    </>
+                    <Done setDone={setDone} />
                 )} />
                 <Route path="/adminwelcome" element={isAdmin ? <AdminWelcome /> : (
                     <>

@@ -3,17 +3,22 @@ import logo from './govuklogo.png';
 import Button from './Button.js';
 
 function Delete() {
-    const [nhsNumber, setNHSNumber] = useState('');
+    const [nhsNo, setNHSNumber] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('http://localhost/backend/removedb.php', {
+        const response = await fetch('http://localhost/backend/removedb.php', {
             method: 'POST',
             body: data,
-        })
+        });
 
+        if (response.ok) {
+            alert('Patient record successfully deleted.');
+        } else {
+            alert('An error occurred while deleting the patient record.');
+        }
     };
 
     return (
@@ -31,7 +36,7 @@ function Delete() {
                         <br />
                         <div className="form-row">
                             <label>NHS number:</label>
-                            <input type="text" name="nhsNumber" value={nhsNumber} onChange={(e) => setNHSNumber(e.target.value)} />
+                            <input type="text" name="nhsNo" value={nhsNo} onChange={(e) => setNHSNumber(e.target.value)} />
                         </div>
                         <div className="form-row">
                             <label>Password:</label>
@@ -41,7 +46,7 @@ function Delete() {
                         <br />
                         <div className="buttonContainer">
                             <div>
-                                <Button type="submit" label="Log in" />
+                                <Button type="submit" label="Delete record" />
                             </div>
                             <div style={{ marginRight: '120px' }}>
                                 <Button link="/" label="Go back" />
